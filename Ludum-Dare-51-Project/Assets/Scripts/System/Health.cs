@@ -35,6 +35,8 @@ public class Health : MonoBehaviour
         if (currentHealth != 0) { return; }
 
         UnitOnDeath?.Invoke(gameObject);
+
+        Destroy(gameObject);
     }
 }
 

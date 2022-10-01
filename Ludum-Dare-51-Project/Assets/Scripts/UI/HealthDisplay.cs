@@ -15,7 +15,6 @@ public class HealthDisplay : MonoBehaviour
         int currentHealth = health.GetCurrentHealth();
         int maxHealth = health.GetMaxHealth();
         healthBarImage.fillAmount = (float)currentHealth / maxHealth;
-        Debug.Log(healthBarImage.fillAmount);
     }
 
 }

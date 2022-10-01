@@ -2,18 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Cinemachine;
 
 public class CharacterAction : MonoBehaviour
 {
     [SerializeField] private ParticleSystem gunParticle;
     [SerializeField] private TrailRenderer bulletTrail;
+    [SerializeField] private int damage;
+    
+    [SerializeField] private CinemachineVirtualCamera camera;
+    [SerializeField] private float cameraShakeIntensity;
+    [SerializeField] private float shakeTimer;
     private Controls controls;
-    private Camera mainCamera;
 
-    void Start()
+    private void Start()
     {
-        mainCamera = Camera.main;
-
         controls = new Controls();
 
         controls.Player.Shoot.performed += HandleShoot;
@@ -21,21 +24,24 @@ public class CharacterAction : MonoBehaviour
         controls.Enable();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void HandleShoot(InputAction.CallbackContext ctx)
     {
         StartCoroutine(MuzzelAnimation(transform, gunParticle));
+        if (camera)
+        {
+            StartCoroutine(ShakeCamera(shakeTimer));
+        }
         if (!Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out RaycastHit hit, Mathf.Infinity)) {
             return;
         }
-        Debug.Log(hit.collider);
         StartCoroutine(TrailAnimation(hit));
-
+        Health health = hit.collider.gameObject.GetComponent<Health>();
+        if (!health)
+        {
+            return;
+        }
+        health.DealDamage(damage);
     }
     private IEnumerator MuzzelAnimation(Transform transform, ParticleSystem particleSystem)
     {
@@ -46,7 +52,6 @@ public class CharacterAction : MonoBehaviour
 
     private IEnumerator TrailAnimation(RaycastHit hit)
     {
-        Debug.Log(hit.point);
         float time = 0;
         TrailRenderer trail = Instantiate(bulletTrail, transform.position, Quaternion.identity);
         Vector3 startPosition = trail.transform.position;
@@ -54,10 +59,16 @@ public class CharacterAction : MonoBehaviour
         {
             trail.transform.position = Vector3.Lerp(startPosition, hit.point, time);
             time += Time.deltaTime / trail.time;
-
             yield return null;
         }
         trail.transform.position = hit.point;
     }
 
+    private IEnumerator ShakeCamera(float intensity)
+    {
+        CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin = camera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
+        yield return new WaitForSeconds(shakeTimer);
+        cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = 0;
+    }
 }

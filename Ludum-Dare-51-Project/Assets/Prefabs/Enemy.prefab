@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 645713063805650046}
   - component: {fileID: 3685681223112114667}
   - component: {fileID: 6996523775458111946}
+  - component: {fileID: 8928538283437835213}
+  - component: {fileID: 1434646333419392205}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -126,6 +128,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 3685681223112114667}
   healthBarImage: {fileID: 2209977403183552702}
+--- !u!114 &8928538283437835213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6816483525289699366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a7020b8c9f7fe4fb7005e0ae9e5608, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 1434646333419392205}
+--- !u!195 &1434646333419392205
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6816483525289699366}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1001 &6560396718319623783
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -133,6 +170,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5296107613471476483}
     m_Modifications:
+    - target: {fileID: 5017111911483424871, guid: cc4eaa2cf39e0404d8c53bec77c46b4e, type: 3}
+      propertyPath: m_Type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5017111911483424871, guid: cc4eaa2cf39e0404d8c53bec77c46b4e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 7482667652216324306, guid: c5688ea1f720c0447b46ded571faa6c8, type: 3}
+    - target: {fileID: 5017111911770162904, guid: cc4eaa2cf39e0404d8c53bec77c46b4e, type: 3}
+      propertyPath: m_CullTransparentMesh
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5017111911770162905, guid: cc4eaa2cf39e0404d8c53bec77c46b4e, type: 3}
+      propertyPath: m_Type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5017111911770162905, guid: cc4eaa2cf39e0404d8c53bec77c46b4e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 7482667652216324306, guid: c5688ea1f720c0447b46ded571faa6c8, type: 3}
     - target: {fileID: 5017111911953624817, guid: cc4eaa2cf39e0404d8c53bec77c46b4e, type: 3}
       propertyPath: m_Name
       value: HealthBarCanvas

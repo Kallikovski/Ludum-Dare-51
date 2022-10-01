@@ -96,6 +96,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunParticle: {fileID: 4718395013789457134, guid: fd324d011fca1cc418f8fcf9a286de2e, type: 3}
   bulletTrail: {fileID: 5502149227186418041, guid: a28eddce19b20d04eac46cf2478ed813, type: 3}
+  damage: 20
+  camera: {fileID: 0}
+  cameraShakeIntensity: 1
+  shakeTimer: 0.3
 --- !u!1 &3139066248926566795
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,6 +260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  currentHealth: 0
 --- !u!114 &2474548548405076360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,6 +282,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3139066248926566784}
     m_Modifications:
+    - target: {fileID: 5017111911483424871, guid: cc4eaa2cf39e0404d8c53bec77c46b4e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 7482667652216324306, guid: c5688ea1f720c0447b46ded571faa6c8, type: 3}
+    - target: {fileID: 5017111911770162905, guid: cc4eaa2cf39e0404d8c53bec77c46b4e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 7482667652216324306, guid: c5688ea1f720c0447b46ded571faa6c8, type: 3}
     - target: {fileID: 5017111911953624817, guid: cc4eaa2cf39e0404d8c53bec77c46b4e, type: 3}
       propertyPath: m_Name
       value: HealthBarCanvas
