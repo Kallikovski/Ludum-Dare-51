@@ -10,7 +10,11 @@ public class AIMovement : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        target = GameObject.FindGameObjectsWithTag("Player")[0];
+        Debug.Log(GameObject.FindGameObjectsWithTag("Player").Length);
+        if(GameObject.FindGameObjectsWithTag("Player").Length != 0)
+        {
+            target = GameObject.FindGameObjectsWithTag("Player")[0];
+        }
     }
 
     // Update is called once per frame

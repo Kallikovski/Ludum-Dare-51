@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8926069755019145048}
   - component: {fileID: 3855413915635128153}
+  - component: {fileID: 5360411727937906164}
   m_Layer: 0
   m_Name: RotationPivot
   m_TagString: Untagged
@@ -47,6 +48,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   angleToRotate: 180
   timeToRotate: 5000
+--- !u!114 &5360411727937906164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6176130273719660914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5793b1fae7796d54b90fc6c9f62edbe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 4
+  damageInterval: 0.2
 --- !u!1 &8037947157114914344
 GameObject:
   m_ObjectHideFlags: 0
@@ -58,6 +73,8 @@ GameObject:
   - component: {fileID: 8037947157114914345}
   - component: {fileID: 8037947157114914341}
   - component: {fileID: 8037947157114914340}
+  - component: {fileID: 185384520703394858}
+  - component: {fileID: 1434923240917815406}
   m_Layer: 0
   m_Name: Cube (2)
   m_TagString: Untagged
@@ -128,6 +145,33 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &185384520703394858
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8037947157114914344}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0000002, y: 1, z: 1.0000002}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1434923240917815406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8037947157114914344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5793b1fae7796d54b90fc6c9f62edbe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 4
+  damageInterval: 0.25
 --- !u!1 &8037947157553575074
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,7 +196,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8037947157553575074}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5, y: -2, z: 5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8037947157574972509}
@@ -266,6 +310,8 @@ GameObject:
   - component: {fileID: 8037947157892383208}
   - component: {fileID: 8037947157892383204}
   - component: {fileID: 8037947157892383207}
+  - component: {fileID: 8205971730459381081}
+  - component: {fileID: 2682140740404764956}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -336,3 +382,30 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8205971730459381081
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8037947157892383211}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 0.99999994}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2682140740404764956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8037947157892383211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5793b1fae7796d54b90fc6c9f62edbe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 4
+  damageInterval: 0.25

@@ -10,7 +10,7 @@ public class Clock : MonoBehaviour
     private float currentTime;
     private float stepAngle;
 
-    public event Action IntervalUp;
+    public static event Action IntervalUp;
     private void Start()
     {
         currentTime = timeToRotate / 1000f;

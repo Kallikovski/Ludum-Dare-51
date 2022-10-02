@@ -97,5 +97,13 @@ public class CharacterMovement : MonoBehaviour
         yield return new WaitForSeconds(dashingCooldown);
         canDash = true;
     }
+    private void OnDestroy()
+    {
+        controls.Player.Rotation.performed -= SetRotation;
 
+        controls.Player.Movement.performed -= SetPreviousInput;
+        controls.Player.Movement.canceled -= SetPreviousInput;
+
+        controls.Player.Dash.performed -= HandleDash;
+    }
 }

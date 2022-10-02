@@ -17,9 +17,4 @@ public class Button : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
     {
         image.sprite = pressed;
     }
-
-    public void ButtonClicked()
-    {
-        Debug.Log("Clicked");
-    }
 }

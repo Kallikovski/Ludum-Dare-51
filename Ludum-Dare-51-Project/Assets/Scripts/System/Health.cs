@@ -9,7 +9,7 @@ public class Health : MonoBehaviour
 
     [SerializeField] private int currentHealth;
 
-    public event Action<GameObject> UnitOnDeath;
+    public static event Action<GameObject> UnitOnDeath;
 
     private void Awake()
     {

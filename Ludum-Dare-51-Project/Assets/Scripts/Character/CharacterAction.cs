@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
+using System;
 
 public class CharacterAction : MonoBehaviour
 {
@@ -15,15 +16,23 @@ public class CharacterAction : MonoBehaviour
     [SerializeField] private float shakeTimer;
     private Controls controls;
 
+    public static event Action GamePause;
+
     private void Start()
     {
         controls = new Controls();
 
         controls.Player.Shoot.performed += HandleShoot;
 
+        controls.Player.Pause.performed += HandlePause;
+
         controls.Enable();
     }
 
+    private void HandlePause(InputAction.CallbackContext obj)
+    {
+        GamePause?.Invoke();
+    }
 
     private void HandleShoot(InputAction.CallbackContext ctx)
     {
@@ -70,5 +79,11 @@ public class CharacterAction : MonoBehaviour
         cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
         yield return new WaitForSeconds(shakeTimer);
         cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = 0;
+    }
+
+    private void OnDestroy()
+    {
+        controls.Player.Shoot.performed -= HandleShoot;
+        controls.Player.Pause.performed -= HandlePause;
     }
 }
