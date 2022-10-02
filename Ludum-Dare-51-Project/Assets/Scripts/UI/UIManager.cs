@@ -48,4 +48,11 @@ public class UIManager : MonoBehaviour
     {
         GameStart?.Invoke();
     }
+
+    private void OnDestroy()
+    {
+        CharacterAction.GamePause -= HandleGamePause;
+        GameManager.GameEnd -= HandleGameEnd;
+        GameStart -= HandleGameStart;
+    }
 }

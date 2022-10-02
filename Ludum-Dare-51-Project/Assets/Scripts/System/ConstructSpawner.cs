@@ -43,4 +43,9 @@ public class ConstructSpawner : MonoBehaviour
             constructs[i] = construct;
         }
     }
+
+    private void OnDestroy()
+    {
+        Clock.IntervalUp -= SpawnConstruct;
+    }
 }

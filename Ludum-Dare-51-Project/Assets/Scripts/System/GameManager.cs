@@ -53,5 +53,6 @@ public class GameManager : MonoBehaviour
     {
         //GameEnd -= HandleGameEnd;
         UIManager.GameStart -= HandleGameStart;
+        Health.UnitOnDeath -= HandleUnitDeath;
     }
 }

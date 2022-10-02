@@ -90,7 +90,7 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    private void OnDestroyt()
+    private void OnDestroy()
     {
         Clock.IntervalUp -= updateDifficultyLevel;
     }

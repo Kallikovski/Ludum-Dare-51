@@ -7490,6 +7490,8 @@ MonoBehaviour:
   - {fileID: 2978124689223871032, guid: 85da38456ca537b4fad8d980e6bc3c27, type: 3}
   - {fileID: 8693345451698297185, guid: 17ee505f67cb137419412ffbf0f49d13, type: 3}
   - {fileID: 8037947157553575074, guid: 03d09ca1e8606b4469bc467303a50159, type: 3}
+  - {fileID: 426507752246785220, guid: 96d5b03fd0ab1884e9a3a508feac982a, type: 3}
+  - {fileID: 228943647874867387, guid: dbb71aeaf17e47a4fb83847d91899a0e, type: 3}
   constructSpawns:
   - {fileID: 872392546626583050}
   - {fileID: 872392547589595341}

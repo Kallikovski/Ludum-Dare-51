@@ -7,13 +7,13 @@ public class SquareTranslate : MonoBehaviour
 
     [SerializeField] private GameObject gameObstacle;
     [SerializeField] private float speed;
-    [SerializeField] private Transform[] position;
+    [SerializeField] private Transform[] positions;
     [SerializeField] private int startPositionIndex = 0;
     private int currentPositionIndex = 0;
 
     private void Awake()
     {
-        gameObject.transform.position = position[startPositionIndex].position;
+        gameObstacle.transform.position = positions[startPositionIndex].position;
     }
 
     private void Update()
@@ -23,12 +23,12 @@ public class SquareTranslate : MonoBehaviour
 
     private void travelPositions()
     {
-        gameObstacle.transform.localPosition = Vector3.MoveTowards(gameObstacle.transform.position, position[currentPositionIndex].position, speed * Time.deltaTime);
-        float distanceToNextPosition = (position[currentPositionIndex].position - gameObstacle.transform.position).magnitude;
+        gameObstacle.transform.position = Vector3.MoveTowards(gameObstacle.transform.position, positions[currentPositionIndex].position, speed * Time.deltaTime);
+        float distanceToNextPosition = (positions[currentPositionIndex].position - gameObstacle.transform.position).magnitude;
         if (distanceToNextPosition <= 0.2)
         {
             currentPositionIndex++;
-            if (currentPositionIndex >= position.Length)
+            if (currentPositionIndex >= positions.Length)
             {
                 currentPositionIndex = 0;
             }
