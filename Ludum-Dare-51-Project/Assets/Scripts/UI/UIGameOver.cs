@@ -14,6 +14,7 @@ public class UIGameOver : MonoBehaviour
 
     private void HandleGameEnd(int score)
     {
+        Time.timeScale = 0;
         Debug.Log("Score: " + score.ToString());
         scoreText.text = "Score: " + score.ToString();
     }

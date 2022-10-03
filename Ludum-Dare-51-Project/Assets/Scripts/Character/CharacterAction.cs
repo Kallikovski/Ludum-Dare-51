@@ -11,15 +11,30 @@ public class CharacterAction : MonoBehaviour
     [SerializeField] private TrailRenderer bulletTrail;
     [SerializeField] private int damage;
     
-    [SerializeField] private CinemachineVirtualCamera camera;
+    private CinemachineBasicMultiChannelPerlin cameraMultiChannel;
     [SerializeField] private float cameraShakeIntensity;
     [SerializeField] private float shakeTimer;
+    private AudioSource audioSource;
     private Controls controls;
+    private bool isPaused = false;
 
     public static event Action GamePause;
 
     private void Start()
     {
+        GameObject camera = GameObject.FindGameObjectWithTag("VirtualCamera");
+
+        if (camera)
+        {
+             CinemachineVirtualCamera cvm = camera.GetComponent<CinemachineVirtualCamera>();
+             if (cvm)
+             {
+                cameraMultiChannel = cvm.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+             }
+        }
+
+        audioSource = GetComponent<AudioSource>();
+
         controls = new Controls();
 
         controls.Player.Shoot.performed += HandleShoot;
@@ -27,17 +42,28 @@ public class CharacterAction : MonoBehaviour
         controls.Player.Pause.performed += HandlePause;
 
         controls.Enable();
+
     }
 
     private void HandlePause(InputAction.CallbackContext obj)
     {
+        isPaused = !isPaused;
+        if (isPaused)
+        {
+            controls.Player.Shoot.performed -= HandleShoot;
+        }
+        else
+        {
+            controls.Player.Shoot.performed += HandleShoot;
+        }
         GamePause?.Invoke();
     }
 
     private void HandleShoot(InputAction.CallbackContext ctx)
     {
         StartCoroutine(MuzzelAnimation(transform, gunParticle));
-        if (camera)
+        audioSource.Play();
+        if (cameraMultiChannel)
         {
             StartCoroutine(ShakeCamera(shakeTimer));
         }
@@ -75,10 +101,9 @@ public class CharacterAction : MonoBehaviour
 
     private IEnumerator ShakeCamera(float intensity)
     {
-        CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin = camera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-        cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
+        cameraMultiChannel.m_AmplitudeGain = intensity;
         yield return new WaitForSeconds(shakeTimer);
-        cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = 0;
+        cameraMultiChannel.m_AmplitudeGain = 0;
     }
 
     private void OnDestroy()

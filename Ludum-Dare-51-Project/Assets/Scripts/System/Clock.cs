@@ -9,8 +9,10 @@ public class Clock : MonoBehaviour
     private float timeToRotate = 10000f;
     private float currentTime;
     private float stepAngle;
+    private bool wasWarned = false;
 
     public static event Action IntervalUp;
+    public static event Action WarnIntervalUp;
     private void Start()
     {
         currentTime = timeToRotate / 1000f;
@@ -26,7 +28,13 @@ public class Clock : MonoBehaviour
         if (currentTime < 0)
         {
             currentTime = timeToRotate / 1000f;
+            wasWarned = false;
             IntervalUp?.Invoke();
+        }
+        if (currentTime - 2 < 0 && wasWarned == false)
+        {
+            wasWarned = true;
+            WarnIntervalUp?.Invoke();
         }
     }
 }

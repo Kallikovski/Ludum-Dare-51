@@ -8,10 +8,14 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float _movementSpeed;
     [SerializeField] private float _rotationSpeed = 5;
 
+    private float startHight;
+
     private bool canDash = true;
     private bool isDashing;
     [SerializeField] private float _dashingPower = 30f;
     [SerializeField] private float dashingTime = 0.1f;
+
+    private TrailRenderer trailRenderer;
     private float dashingCooldown = 1f;
 
     private Vector2 previousInput;
@@ -27,6 +31,10 @@ public class CharacterMovement : MonoBehaviour
 
     private void Start()
     {
+        trailRenderer = GetComponent<TrailRenderer>();
+        startHight = transform.position.y + 0.2f;
+        Debug.Log(startHight);
+
         rb = GetComponent<Rigidbody>();
 
         controls = new Controls();
@@ -71,6 +79,7 @@ public class CharacterMovement : MonoBehaviour
         }
 
         rb.velocity = val;
+        transform.position = new Vector3(transform.position.x, startHight,transform.position.z);
     }
 
     private void SetPreviousInput(InputAction.CallbackContext ctx)
@@ -89,6 +98,7 @@ public class CharacterMovement : MonoBehaviour
 
     private IEnumerator Dash()
     {
+        trailRenderer.enabled = true;
         canDash = false;
         isDashing = true;
         rb.velocity = new Vector3(previousInput.x, 0f, previousInput.y) * _dashingPower;
@@ -96,6 +106,7 @@ public class CharacterMovement : MonoBehaviour
         isDashing = false;
         yield return new WaitForSeconds(dashingCooldown);
         canDash = true;
+        trailRenderer.enabled = false;
     }
     private void OnDestroy()
     {
